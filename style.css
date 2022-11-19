@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  margin: 16px 0;
+}
+
+button,
+.filter-btn {
+  border: 1px solid #fff;
+  padding: 8px 16px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #ff6666;
+  cursor: pointer;
+}
+
+.container {
+  width: 400px;
+  min-height: 500px;
+  max-width: 100%;
+  margin: auto;
+  padding: 16px;
+  background-color: #ff6666;
+}
+
+input[type="text"] {
+  padding: 8px 0 8px 16px;
+  width: calc(100% - 80px);
+  margin-right: 4px;
+}
+
+.func-buttons {
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.func-buttons .filter-btn {
+  margin-right: 8px;
+  padding: 8px 4px;
+}
+
+.func-buttons .filter-btn:last-child {
+  margin-right: 0;
+}
+
+.func-buttons label {
+  margin-left: 4px;
+  font-size: 14px;
+  line-height: 13px;
+}
+
+#delete-all-btn {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  padding: 8px 4px;
+  line-height: 13px;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.update-btn {
+  margin: auto;
+  margin-right: 4px;
+}
+
+.delete-btn {
+  margin: auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  max-width: calc(100% + 32px);
+  flex: 1;
+  line-height: 56px;
+  padding: 0 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.todo-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.buttons {
+  display: none;
+}
+
+.todo-item:hover .buttons {
+  display: flex;
+}
+
+label {
+  display: inline-block;
+  vertical-align: top;
+  color: #fff;
+  font-size: 20px;
+  max-width: 200px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
