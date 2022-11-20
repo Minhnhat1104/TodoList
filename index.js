@@ -1,15 +1,29 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+const todoList = JSON.parse(localStorage.getItem("todoList")) || [];
 const addBtn = $(".add-btn");
-const stringInput = $(".item-input");
 const todoContainer = $(".todo-list");
 const filterInput = $$("input[name='filter']");
-const todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+const stringInput = $(".item-input");
+
+// two-way binding
+var inputObj = (function (e) {
+  return {
+    set value(v) {
+      e.value = v;
+    },
+    get value() {
+      return e.value;
+    },
+  };
+})(stringInput);
 
 function handleAdd() {
-  todoList.push({ name: newItem, finished: false });
-  stringInput.value = "";
+  if (inputObj.value === "") return;
+  todoList.push({ name: inputObj.value, finished: false });
+  // stringInput.value = "";
+  inputObj.value = "";
   localStorage.setItem("todoList", JSON.stringify(todoList));
   render(todoList);
 }
@@ -39,12 +53,14 @@ function handleDeleteAll() {
 
 function handleUpdate(index) {
   addBtn.innerHTML = "Sửa";
-  stringInput.value = "";
+  // stringInput.value = "";
+  inputObj.value = "";
   stringInput.focus();
   addBtn.onclick = () => {
     addBtn.innerHTML = "Thêm";
     todoList[index] = stringInput.value;
-    stringInput.value = "";
+    // stringInput.value = "";
+    inputObj.value = "";
     addBtn.onclick = handleAdd;
     localStorage.setItem("todoList", JSON.stringify(todoList));
     render(todoList);
@@ -60,7 +76,7 @@ function render(todoList = []) {
               <input key=${index} type="checkbox" name="todo-item" id="item-${index}" onchange="handleCheck(${index})" ${
         item.finished ? "checked" : ""
       } />
-              <label for="item-${index}">${item.name}</label>
+              <label class="item-label" for="item-${index}">${item.name}</label>
             </div>
 
             <div class="align-center buttons">
@@ -101,13 +117,18 @@ function handleFilter() {
   });
 }
 
-function init() {
-  stringInput.onchange = (e) => {
-    newItem = e.target.value;
-  };
+function handleEnterPress() {
+  function handlekeyUp(e) {
+    if (e.key === "Enter") handleAdd();
+  }
 
+  stringInput.addEventListener("keyup", handlekeyUp);
+}
+
+function init() {
   addBtn.onclick = handleAdd;
   handleFilter();
+  handleEnterPress();
   render(todoList);
 }
 

@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <!-- <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" /> -->
+    <link
+      data-n-head="ssr"
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
     <title>TodoList</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -12,7 +18,7 @@
     <div class="container">
       <h1>Todo List</h1>
       <div class="align-center">
-        <input class="item-input" type="text" maxlength="20" />
+        <input class="item-input" type="text" maxlength="100" />
         <button class="add-btn">Thêm</button>
       </div>
       <div class="func-buttons align-center">
