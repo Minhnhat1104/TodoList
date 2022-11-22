@@ -22,7 +22,6 @@ var inputObj = (function (e) {
 function handleAdd() {
   if (inputObj.value === "") return;
   todoList.push({ name: inputObj.value, finished: false });
-  // stringInput.value = "";
   inputObj.value = "";
   localStorage.setItem("todoList", JSON.stringify(todoList));
   render(todoList);
@@ -53,13 +52,15 @@ function handleDeleteAll() {
 
 function handleUpdate(index) {
   addBtn.innerHTML = "Sửa";
-  // stringInput.value = "";
   inputObj.value = "";
   stringInput.focus();
   addBtn.onclick = () => {
     addBtn.innerHTML = "Thêm";
-    todoList[index] = stringInput.value;
-    // stringInput.value = "";
+    todoList[index] = {
+      ...todoList[index],
+      name: stringInput.value,
+    };
+
     inputObj.value = "";
     addBtn.onclick = handleAdd;
     localStorage.setItem("todoList", JSON.stringify(todoList));
@@ -119,7 +120,7 @@ function handleFilter() {
 
 function handleEnterPress() {
   function handlekeyUp(e) {
-    if (e.key === "Enter") handleAdd();
+    if (e.key === "Enter") addBtn.click();
   }
 
   stringInput.addEventListener("keyup", handlekeyUp);
